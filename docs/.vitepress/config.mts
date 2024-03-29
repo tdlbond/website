@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'tdl',
-  description: 'tdl site',
+  title: '拔萝卜的兔子',
+  description: '拔萝卜的兔子 site',
   cleanUrls: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

@@ -3,8 +3,7 @@
 layout: home
 
 hero:
-  name: "tdl"
-  text: "tdl site"
+  name: "拔萝卜的兔子"
   tagline: sum, share
   actions:
     - theme: brand
