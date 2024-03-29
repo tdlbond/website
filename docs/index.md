@@ -5,14 +5,14 @@ layout: home
 hero:
   name: "tdl"
   text: "tdl site"
-  tagline: My great project tagline
+  tagline: sum, share
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get Started
+      link: /document/javascript
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Vitepress Examples
+      link: /demo/markdown-examples
 
 features:
   - title: Feature A
