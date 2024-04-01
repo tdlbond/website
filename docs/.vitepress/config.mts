@@ -32,5 +32,9 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: 'github', link: '' }]
+  },
+
+  markdown: {
+    lineNumbers: true
   }
 })
