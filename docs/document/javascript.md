@@ -82,22 +82,6 @@ constructor有两个作用，一是判断数据类型，二是构造函数原型
 Object.prototype.toString.call
 :::
 
-### 如何获取安全的undefined
-
-由于`undefined`是一个标识符，即可以用作变量，也可以作为值。通过`void 0`获取安全的`undefined`。
-
-```js
-var undefined = 1
-var test = undefined // [!code --]
-var test = void 0 // [!code ++]
-```
-
-### Object.is()与"=="、"==="的区别
-
-1. `==`在进行判断时，如果两边类型不一致会进行类型转换后再比较
-2. `===`在进行判断时，如果两边类型不一致不会进行转性转换
-3. `Object.is()`基本等同于`===`，它处理了一些特殊的情况，比如`-0`和`+0`不再相等，两个NaN是相等的
-
 ## 创建对象
 
 ### 工厂模式
@@ -200,14 +184,6 @@ Person.prototype = {
 const person2 = new Person
 ```
 
-#### 原型链
-
-原型链是ECMAScript中的主要继承方式，其基本思想是通过原型继承多个引用类型的属性和方法。具体实现方法是将构造函数的原型赋值为另一个要继承的构造函数的实例对象。
-
-::: tip
-所有引用类型都继承自Object，这也是为什么自定义类型能够继承包括toString()、valueOf()在内的所有默认方法的原因。
-:::
-
 ### 组合使用构造函数模式和原型模式
 
 组合构造函数模式和原型模式是创建自定义类型的最常见的方式，集两种模式之长，构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性。
@@ -235,32 +211,144 @@ console.log(person1.sayName === person2.sayName) // true
 
 ### 稳妥构造函数模式
 
-<script setup>
-// function Person(name) {
-//   this.name = name
-// }
+## 继承
 
-// const p1 = new Person('tom')
-// console.dir(Person)
-// console.log(p1.constructor)
-// function Person() {}
-// Person.prototype.name = 'tom'
-// Person.prototype.sayName = function() {
-//   console.log(this.name)
-// }
+### 原型链
 
-// const p1 = new Person()
-// console.dir(Person)
-// console.log(p1)
+原型链是ECMAScript中的主要继承方式，其基本思想是通过原型继承多个引用类型的属性和方法。具体实现方法是将构造函数的原型赋值为另一个要继承的构造函数的实例对象。
 
-function Animal() {}
-// Animal.prototype.name = 'cat'
-Animal.prototype = {
-  name: 'cat'
+::: tip
+所有引用类型都继承自Object，这也是为什么自定义类型能够继承包括`toString()`、`valueOf()`在内的所有默认方法的原因。
+:::
+
+```js {11}
+function SuperType() {
+  this.super = 'super'
 }
-const a1 = new Animal()
-console.log(Animal.prototype)
-console.log(Animal.prototype.constructor)
-console.log(a1)
-console.log(a1 instanceof Animal)
-</script>
+SuperType.prototype.getSuper = function() {
+  console.log(this.super)
+}
+
+function SubType() {
+  this.sub = 'sub'
+}
+SubType.prototype = new SuperType()
+SubType.prototype.getSub = function() {
+  console.log(this.sub)
+}
+
+const sub1 = new SubType()
+console.log(sub1.getSuper()) // super
+console.log(sub1.getSub()) // sub
+console.log(sub1 instanceof SubType) // true
+console.log(sub1 instanceof SuperType) // true
+console.log(SubType.prototype.isPrototypeOf(sub1)) // true
+```
+
+:::danger 原型链的问题
+- 继承的原型上存在引用类型值的问题，会在所有实例间共享
+- 子类型在实例化的过程中不能给父类型的构造函数传参
+:::
+
+### 盗用构造函数
+
+在子类构造函数中调用父类构造函数，即在子类中通过call或apply调用父构造函数，使得父构造函数在子类构造函数中运行。
+
+```js {6}
+function SuperType(name) {
+  this.name = name
+}
+function SubType(name, age) {
+  // 调用父构造函数
+  SuperType.call(this, name)
+  this.age = age
+}
+const sub1 = new SubType('tom', 1)
+console.log(sub1.name) // tom
+console.log(sub1.age) // 1
+```
+
+:::danger 盗用构造函数的问题
+盗用构造函数的问题即构造函数模式创建自定义对象的问题，构造函数中方法会在实例中重复创建。
+:::
+
+### 组合继承（伪经典继承）
+
+组合继承综合了原型链继承和盗用构造函数，继承了两者的优点，通过原型链继承原型上的属性和方法，通过盗用构造函数继承实例属性。
+
+```js {10,14}
+function SuperType(name) {
+  this.name = name
+}
+SuperType.prototype.getSuper = function() {
+  console.log(this.name)
+}
+
+function SubType(name, age) {
+  // 盗用构造函数
+  SuperType.call(this, name)
+  this.age = age
+}
+// 原型链继承
+SubType.prototype = new SuperType()
+SubType.prototype.getSub = function() {
+  console.log(this.age)
+}
+
+const sub1 = new SubType('tom', 1)
+const sub2 = new SubType('jerry', 2)
+console.log(sub1.getSuper()) // tom
+console.log(sub1.getSub()) // 1
+console.log(sub2.getSuper()) // jerry
+console.log(sub2.getSub()) // 2
+```
+
+### 原型式继承
+
+### 寄生式继承
+
+### 寄生式组合继承
+
+## encodeURI和encodeURIComponent的区别
+
+:::info encodeURI
+用作对一个完整的URI进行编码，不会对其中的ASCII码、数字和标点符号进行处理。<br>
+使用场景，需要获取一个可用的URL地址时：
+```js
+let url = 'https://test/hello world'
+console.log(encodeURI(url)) // https://test/hello%20world
+```
+:::
+
+:::info encodeURIComponent
+对URI的组成部分进行编码（协议、域名、路劲、参数、查询字符串等），在encodeURI中不会被编码的符号会被编码。<br>
+使用场景，需要对URL的参数进行编码时：
+```js
+let param = 'https://test/hello world'
+let url = `https://test/info?param=${encodeURIComponent(param)}`
+console.log(url) // https://test/info?param=https%3A%2F%2Ftest%2Fhello%20world
+```
+:::
+
+## 如何获取安全的undefined
+
+由于`undefined`是一个标识符，即可以用作变量，也可以作为值。通过`void 0`获取安全的`undefined`。
+
+```js
+var undefined = 1
+var test = undefined // [!code --]
+var test = void 0 // [!code ++]
+```
+
+## Object.is()与==、===的区别
+
+1. `==`在进行判断时，如果两边类型不一致会进行类型转换后再比较
+2. `===`在进行判断时，如果两边类型不一致不会进行转性转换
+3. `Object.is()`基本等同于`===`，它处理了一些特殊的情况，比如`-0`和`+0`不再相等，两个`NaN`是相等的
+
+## 常见的导致内存泄漏的操作
+
+1. 使用未声明的变量而创建的全局变量
+2. 未及时销毁的计时器和回调函数
+3. 保留已被删除DOM的引用
+4. 闭包
