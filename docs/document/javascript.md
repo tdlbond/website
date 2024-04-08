@@ -1,9 +1,10 @@
 ---
 outline: deep
 ---
-# JavaScript八股文
 
-一些无聊但是得懂的八股文，巴拉巴拉巴拉。
+# JavaScript基础知识
+
+巴拉巴拉巴拉。
 
 ## JavaScript中的数据类型
 

@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '拔萝卜的兔子',
   description: '拔萝卜的兔子 site',
-  cleanUrls: true,
+  cleanUrls: false,
   //   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   // <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   // <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -65,7 +65,11 @@ export default defineConfig({
       '/document/': [
         {
           text: '语言',
-          items: [{ text: 'JavaScript', link: '/document/javascript' }]
+          items: [
+            { text: 'JavaScript', link: '/document/javascript' },
+            { text: '性能优化', link: '/document/performance' },
+            { text: '浏览器', link: '/document/browser' }
+          ]
         }
       ],
       '/demo/': [
