@@ -39,7 +39,7 @@ export default defineConfig({
         href: '/favicon/favicon-16x16.png'
       }
     ],
-    ['link', { rel: 'manifest', href: '/favicon//site.webmanifest' }],
+    ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }],
     [
       'link',
       {
@@ -68,7 +68,11 @@ export default defineConfig({
           items: [
             { text: 'JavaScript', link: '/document/javascript' },
             { text: '性能优化', link: '/document/performance' },
-            { text: '浏览器', link: '/document/browser' }
+            { text: '浏览器', link: '/document/browser' },
+            { text: '数据结构', link: '/document/dataStructure' },
+            { text: '算法', link: '/document/algorithm' },
+            { text: 'Vue', link: '/document/vue' },
+            { text: '软件设计师教程', link: '/document/softwareArchitect' }
           ]
         }
       ],
