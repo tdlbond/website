@@ -5,13 +5,6 @@ export default defineConfig({
   title: '拔萝卜的兔子',
   description: '拔萝卜的兔子 site',
   cleanUrls: false,
-  //   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  // <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  // <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  // <link rel="manifest" href="/site.webmanifest">
-  // <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-  // <meta name="msapplication-TileColor" content="#da532c">
-  // <meta name="theme-color" content="#ffffff">
   head: [
     [
       'link',
@@ -72,6 +65,7 @@ export default defineConfig({
             { text: '数据结构', link: '/document/dataStructure' },
             { text: '算法', link: '/document/algorithm' },
             { text: 'Vue', link: '/document/vue' },
+            { text: 'Typescript', link: '/document/typescript' },
             { text: '软件设计师教程', link: '/document/softwareArchitect' }
           ]
         }
@@ -87,7 +81,9 @@ export default defineConfig({
       ]
     },
 
-    socialLinks: [{ icon: 'github', link: '' }]
+    socialLinks: [{ icon: 'github', link: '' }],
+
+    outlineTitle: '页面导航'
   },
 
   markdown: {
