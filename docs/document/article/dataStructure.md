@@ -21,7 +21,7 @@ function Node(val) {
 /**
  * @description 链表
  */
-function MyLinkedList () {
+function MyLinkedList() {
   this.head = null
   this.length = 0
 }
@@ -29,7 +29,7 @@ function MyLinkedList () {
 /**
  * @param {number} index
  * @return {number}
- * @description 获取链表中下标为 index 的节点的值。如果下标无效，则返回 -1 
+ * @description 获取链表中下标为 index 的节点的值。如果下标无效，则返回 -1
  */
 MyLinkedList.prototype.get = function (index) {
   if (/^([1-9][0-9]*|0)$/.test(index) && this.length && index < this.length) {
@@ -196,8 +196,6 @@ function hasIntersect(headA, headB) {
 
 ### 链表中的双指针
 
-
-
 <script>
 function Node(val) {
     this.val = val;
@@ -209,7 +207,7 @@ var MyLinkedList = function() {
     this.length = 0;
 };
 
-/** 
+/**
  * @param {number} index
  * @return {number}
  */
@@ -229,7 +227,7 @@ MyLinkedList.prototype.get = function(index) {
     }
 };
 
-/** 
+/**
  * @param {number} val
  * @return {void}
  */
@@ -245,7 +243,7 @@ MyLinkedList.prototype.addAtHead = function(val) {
     this.length++;
 };
 
-/** 
+/**
  * @param {number} val
  * @return {void}
  */
@@ -271,8 +269,8 @@ MyLinkedList.prototype.addAtTail = function(val) {
     }
 };
 
-/** 
- * @param {number} index 
+/**
+ * @param {number} index
  * @param {number} val
  * @return {void}
  */
@@ -303,7 +301,7 @@ MyLinkedList.prototype.addAtIndex = function(index, val) {
     }
 };
 
-/** 
+/**
  * @param {number} index
  * @return {void}
  */

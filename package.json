@@ -2,9 +2,13 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "docs:deploy": "node deploy.ts"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
+    "ssh2": "^1.15.0",
+    "ssh2-sftp-client": "^10.0.3",
     "vitepress": "^1.0.1"
   }
 }

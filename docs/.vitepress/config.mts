@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: '拔萝卜的兔子',
-  description: '拔萝卜的兔子 site',
+  description: '拔萝卜的兔子的site，JavaScript、css、html、vue...',
   cleanUrls: false,
   head: [
     [
@@ -42,7 +42,8 @@ export default defineConfig({
       }
     ],
     ['meta', { name: 'msapplication-TileColor', content: '#da532c' }],
-    ['meta', { name: 'theme-color', content: '#ffffff' }]
+    ['meta', { name: 'theme-color', content: '#ffffff' }],
+    ['meta', { name: 'keywords', content: 'html,css,javascript,vue,jsx' }]
   ],
 
   themeConfig: {
@@ -59,15 +60,23 @@ export default defineConfig({
         {
           text: '语言',
           items: [
-            { text: 'JavaScript', link: '/document/javascript' },
-            { text: '性能优化', link: '/document/performance' },
-            { text: '浏览器', link: '/document/browser' },
-            { text: '数据结构', link: '/document/dataStructure' },
-            { text: '算法', link: '/document/algorithm' },
-            { text: 'Vue', link: '/document/vue' },
-            { text: 'Typescript', link: '/document/typescript' },
-            { text: '软件设计师教程', link: '/document/softwareArchitect' }
+            { text: 'JavaScript', link: '/document/article/javascript' },
+            { text: '性能优化', link: '/document/article/performance' },
+            { text: '浏览器', link: '/document/article/browser' },
+            { text: '数据结构', link: '/document/article/dataStructure' },
+            { text: '算法', link: '/document/article/algorithm' },
+            { text: 'Vue', link: '/document/article/vue' },
+            { text: 'Typescript', link: '/document/article/typescript' },
+            { text: 'Css', link: '/document/article/css' },
+            {
+              text: '软件设计师教程',
+              link: '/document/article/softwareArchitect'
+            }
           ]
+        },
+        {
+          text: '日常开发的坑点',
+          items: [{ text: 'JavaScript', link: '/document/trouble/javascript' }]
         }
       ],
       '/demo/': [
