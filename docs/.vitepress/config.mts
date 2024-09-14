@@ -51,7 +51,7 @@ export default defineConfig({
     logo: '/favicon/favicon-32x32.png',
     nav: [
       { text: '首页', link: '/' },
-      { text: '文档', link: '/document/javascript' },
+      { text: '文档', link: '/document/article/javascript' },
       { text: 'Vitepress Examples', link: '/demo/markdown-examples' }
     ],
 
