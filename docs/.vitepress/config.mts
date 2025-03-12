@@ -66,6 +66,7 @@ export default defineConfig({
             { text: '数据结构', link: '/document/article/dataStructure' },
             { text: '算法', link: '/document/article/algorithm' },
             { text: 'Vue', link: '/document/article/vue' },
+            { text: 'React', link: '/document/article/react' },
             { text: 'Typescript', link: '/document/article/typescript' },
             { text: 'Css', link: '/document/article/css' },
             {
